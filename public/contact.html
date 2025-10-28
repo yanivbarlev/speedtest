@@ -134,7 +134,7 @@
         <p>Have questions, feedback, or experiencing issues? We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.</p>
 
         <div class="contact-form">
-            <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="contactForm" action="https://formspree.io/f/mpwopblq" method="POST">
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required placeholder="Your name">
@@ -192,11 +192,10 @@
     </div>
 
     <script>
-        // Simple form submission handler
+        // Form submission handler - Formspree handles the actual submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            // Note: You'll need to set up a form service like Formspree
-            // and replace YOUR_FORM_ID in the form action URL
-            console.log('Form submitted');
+            // Formspree will handle the submission and redirect
+            // You can customize the thank you page in Formspree settings
         });
     </script>
 </body>
