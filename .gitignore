@@ -23,3 +23,5 @@ npm-debug.log*
 
 # Test files
 test-button.html
+
+.vercel
