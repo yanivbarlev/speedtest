@@ -37,6 +37,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://speedtst.online/speed-guide.html</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://speedtst.online/privacy.html</loc>
     <lastmod>2025-01-28</lastmod>
     <changefreq>yearly</changefreq>
