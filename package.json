@@ -1,0 +1,17 @@
+{
+  "name": "speedtst-online",
+  "version": "1.0.0",
+  "description": "Internet speed test website - speedtst.online",
+  "scripts": {
+    "dev": "python -m http.server 8000 --directory public",
+    "vercel-dev": "vercel dev"
+  },
+  "keywords": [
+    "speedtest",
+    "internet",
+    "speed",
+    "bandwidth"
+  ],
+  "author": "speedtst.online",
+  "license": "MIT"
+}

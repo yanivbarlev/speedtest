@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test your internet speed with speedtst.online - Free and accurate download, upload, and ping measurements">
+    <title>Speedtest - Internet Speed Test by speedtst.online</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6 L12 12 L16 16" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+            SPEEDTEST
+        </div>
+        <nav>
+            <a href="#" id="languageToggle">English ▾</a>
+            <a href="#apps">Apps</a>
+            <a href="#learn">Learn</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="tabs">
+            <button class="tab active" data-tab="results">RESULTS</button>
+            <button class="tab" data-tab="settings">SETTINGS</button>
+        </div>
+
+        <div class="results-section">
+            <!-- Speed Gauge -->
+            <div class="speed-gauge">
+                <svg class="gauge-svg" viewBox="0 0 200 200">
+                    <!-- Background circle -->
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+                    <!-- Progress circle -->
+                    <circle id="progressCircle" cx="100" cy="100" r="90" fill="none" stroke="#00d4ff" stroke-width="3"
+                        stroke-dasharray="565.48" stroke-dashoffset="565.48"
+                        transform="rotate(-90 100 100)" stroke-linecap="round"/>
+                </svg>
+                <div class="gauge-inner" style="display: none;">
+                    <div id="speedDisplay" class="speed-value">0</div>
+                    <div id="speedUnit" class="speed-unit">Mbps</div>
+                    <div id="testPhase" class="test-phase">Testing...</div>
+                </div>
+                <button id="goButton" class="go-button">GO</button>
+            </div>
+
+            <!-- Results Display -->
+            <div id="resultsDisplay" class="results-grid" style="display: none;">
+                <div class="result-item">
+                    <div class="result-label">DOWNLOAD</div>
+                    <div id="downloadSpeed" class="result-value">--</div>
+                    <div class="result-unit">Mbps</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">UPLOAD</div>
+                    <div id="uploadSpeed" class="result-value">--</div>
+                    <div class="result-unit">Mbps</div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">PING</div>
+                    <div id="pingValue" class="result-value">--</div>
+                    <div class="result-unit">ms</div>
+                </div>
+            </div>
+
+            <!-- Connection Info -->
+            <div class="connection-info">
+                <div id="ispName" class="isp-name">Detecting...</div>
+                <div id="ipAddress" class="ip-address">---.---.---.---</div>
+                <a href="#" id="changeServer" class="change-server">
+                    <span id="serverLocation">Auto-selecting server...</span><br>
+                    Change Server
+                </a>
+            </div>
+
+            <!-- Connection Type Toggle -->
+            <div class="connection-type">
+                <div class="connection-option active" data-mode="multi">
+                    <span>⇄</span> Multi
+                </div>
+                <div class="connection-option" data-mode="single">
+                    <span>→</span> Single
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn" id="historyBtn">
+                    <span>📊</span> Results History
+                </button>
+                <button class="btn" id="shareBtn" style="display: none;">
+                    <span>🔗</span> Share Results
+                </button>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="#00d4ff" stroke-width="2">
+                            <rect x="20" y="40" width="60" height="40" rx="2"/>
+                            <line x1="50" y1="40" x2="50" y2="20"/>
+                            <circle cx="50" cy="15" r="5"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title">Desktop Apps</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="#00d4ff" stroke-width="2">
+                            <path d="M 30 30 Q 50 10 70 30 Q 90 50 70 70 Q 50 90 30 70 Q 10 50 30 30"/>
+                            <circle cx="50" cy="50" r="15"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title">Troubleshoot Your WiFi</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 100 100" fill="none" stroke="#00d4ff" stroke-width="2">
+                            <circle cx="50" cy="50" r="30"/>
+                            <path d="M 30 40 L 45 60 L 70 35"/>
+                        </svg>
+                    </div>
+                    <div class="feature-title">Check for Outages</div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4>SPEEDTEST</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>RESOURCES</h4>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#learn">Speed Guide</a></li>
+                        <li><a href="#troubleshoot">Troubleshooting</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>APPS</h4>
+                    <ul>
+                        <li><a href="#android">Android</a></li>
+                        <li><a href="#ios">iOS</a></li>
+                        <li><a href="#windows">Windows</a></li>
+                        <li><a href="#macos">macOS</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 speedtst.online. All Rights Reserved.</p>
+                <p style="margin-top: 15px;">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Use</a>
+                    <a href="#contact">Contact</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal (hidden by default) -->
+    <div id="historyModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Test History</h2>
+            <div id="historyList" class="history-list"></div>
+            <button id="clearHistory" class="btn">Clear History</button>
+        </div>
+    </div>
+
+    <script src="js/speedtest.js"></script>
+</body>
+</html>
