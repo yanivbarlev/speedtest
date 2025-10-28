@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Troubleshoot slow internet speeds - practical solutions for common connectivity problems">
+    <title>Internet Speed Troubleshooting - speedtst.online</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .content-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        .content-page h1 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            color: #00d4ff;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #00d4ff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            opacity: 0.8;
+        }
+        .problem-section {
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .problem-section h2 {
+            font-size: 32px;
+            color: #00d4ff;
+            margin-bottom: 20px;
+        }
+        .problem-section h3 {
+            font-size: 24px;
+            color: #00d4ff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .problem-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .problem-section ul, .problem-section ol {
+            margin: 15px 0;
+            padding-left: 40px;
+        }
+        .problem-section li {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .tip-box {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .step-number {
+            display: inline-block;
+            background: #00d4ff;
+            color: #000;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6 L12 12 L16 16" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+            <a href="index.html" style="color: inherit; text-decoration: none;">SPEEDTEST</a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="content-page">
+        <a href="index.html" class="back-link">← Back to Speed Test</a>
+
+        <h1>Internet Speed Troubleshooting</h1>
+        <p style="font-size: 20px; color: rgba(255, 255, 255, 0.8); margin-bottom: 50px;">
+            Experiencing slow speeds? This guide walks you through practical solutions to diagnose and fix common internet connectivity issues.
+        </p>
+
+        <!-- Problem 1 -->
+        <div class="problem-section">
+            <h2>🐌 Problem: Slow Speeds Across All Devices</h2>
+            <p>If every device in your home is experiencing slow speeds, the issue is likely with your internet connection or router, not individual devices.</p>
+
+            <h3>Quick Fixes to Try First:</h3>
+            <ol>
+                <li><strong>Restart your modem and router</strong>
+                    <ul>
+                        <li>Unplug both devices from power</li>
+                        <li>Wait 30 seconds</li>
+                        <li>Plug modem back in first, wait for it to fully boot (2-3 minutes)</li>
+                        <li>Then plug router back in</li>
+                        <li>Wait another 2-3 minutes for everything to reconnect</li>
+                    </ul>
+                </li>
+                <li><strong>Test with a wired connection</strong>
+                    <ul>
+                        <li>Connect a laptop directly to your router with an ethernet cable</li>
+                        <li>Run a speed test</li>
+                        <li>If speeds are normal on ethernet but slow on WiFi, the problem is your WiFi (see WiFi section below)</li>
+                    </ul>
+                </li>
+                <li><strong>Check for outages</strong>
+                    <ul>
+                        <li>Visit your ISP's status page or Twitter account</li>
+                        <li>Ask neighbors if they're having issues</li>
+                        <li>Use your phone's cellular data to check ISP status websites</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Deeper Troubleshooting:</h3>
+            <p><span class="step-number">1</span><strong>Test at different times of day</strong></p>
+            <p>Run speed tests every few hours for a full day. If speeds are consistently slow 24/7, contact your ISP. If they're only slow during certain hours (usually 7-10 PM), that's network congestion.</p>
+
+            <p><span class="step-number">2</span><strong>Check what's using your bandwidth</strong></p>
+            <ul>
+                <li>Close all apps and browser tabs except the speed test</li>
+                <li>Pause any downloads, uploads, or cloud syncing</li>
+                <li>Temporarily disable automatic updates on all devices</li>
+                <li>Check if someone else is streaming or gaming</li>
+            </ul>
+
+            <p><span class="step-number">3</span><strong>Test your modem directly</strong></p>
+            <ul>
+                <li>Disconnect your router completely</li>
+                <li>Connect computer directly to modem with ethernet</li>
+                <li>Run speed test</li>
+                <li>If speeds are good here but slow through router, your router is the bottleneck</li>
+            </ul>
+
+            <div class="tip-box">
+                <p style="margin: 0;"><strong>Pro Tip:</strong> If you're consistently getting less than 70% of your advertised speed at all times of day (tested via ethernet), document it with screenshots and contact your ISP. Most providers guarantee a certain percentage of advertised speeds.</p>
+            </div>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="problem-section">
+            <h2>📶 Problem: WiFi is Slow But Ethernet is Fast</h2>
+            <p>If wired connections are fine but WiFi is slow, your wireless network needs optimization.</p>
+
+            <h3>Common WiFi Issues & Solutions:</h3>
+
+            <p><strong>Issue #1: Router placement is poor</strong></p>
+            <ul>
+                <li>Move router to a central, elevated location (not in a closet or basement)</li>
+                <li>Keep it away from walls, metal objects, and appliances</li>
+                <li>Don't hide it behind furniture or in cabinets</li>
+                <li>Position antennas vertically (if your router has external antennas)</li>
+            </ul>
+
+            <p><strong>Issue #2: WiFi interference</strong></p>
+            <ul>
+                <li>Move router away from microwave ovens, baby monitors, and cordless phones</li>
+                <li>Change WiFi channel in router settings (try channels 1, 6, or 11 for 2.4GHz)</li>
+                <li>Use 5GHz band instead of 2.4GHz when possible (faster but shorter range)</li>
+                <li>In apartment buildings, lots of neighboring WiFi networks can cause interference</li>
+            </ul>
+
+            <p><strong>Issue #3: Too many devices connected</strong></p>
+            <ul>
+                <li>Older routers struggle with 10+ devices</li>
+                <li>Disconnect devices you're not actively using</li>
+                <li>Consider upgrading to a WiFi 6 router if you have many devices</li>
+                <li>Use ethernet for stationary devices (desktop PC, smart TV, gaming console)</li>
+            </ul>
+
+            <p><strong>Issue #4: Outdated router</strong></p>
+            <ul>
+                <li>Routers older than 4-5 years may not support modern speeds</li>
+                <li>Check if your router supports your internet plan's speed</li>
+                <li>Look for WiFi 5 (802.11ac) or WiFi 6 (802.11ax) routers</li>
+                <li>ISP-provided routers are often lower quality - consider buying your own</li>
+            </ul>
+
+            <div class="warning-box">
+                <p style="margin: 0;"><strong>Important:</strong> 2.4GHz WiFi maxes out around 50-100 Mbps in real-world use, even if your internet is faster. For speeds above 100 Mbps, you need to use the 5GHz band. Check which band you're connected to in your device's WiFi settings.</p>
+            </div>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="problem-section">
+            <h2>⏱️ Problem: High Ping / Lag During Gaming or Video Calls</h2>
+            <p>Low bandwidth (Mbps) isn't the same as high latency (ping). You might have fast speeds but still experience lag.</p>
+
+            <h3>Solutions for High Latency:</h3>
+
+            <ol>
+                <li><strong>Use a wired connection</strong>
+                    <p>WiFi adds 5-20ms of latency. For gaming and video calls, ethernet makes a noticeable difference.</p>
+                </li>
+
+                <li><strong>Enable Quality of Service (QoS)</strong>
+                    <ul>
+                        <li>Log into your router settings</li>
+                        <li>Look for QoS or "Traffic Prioritization"</li>
+                        <li>Set gaming or video conferencing as high priority</li>
+                        <li>This prevents other devices from hogging bandwidth</li>
+                    </ul>
+                </li>
+
+                <li><strong>Close bandwidth-hungry applications</strong>
+                    <ul>
+                        <li>Pause downloads, uploads, and streaming</li>
+                        <li>Close cloud backup services (Dropbox, Google Drive, OneDrive)</li>
+                        <li>Disable automatic updates during gaming/calls</li>
+                    </ul>
+                </li>
+
+                <li><strong>Check for background processes</strong>
+                    <ul>
+                        <li>Windows Update downloading in background</li>
+                        <li>Game clients updating (Steam, Epic, etc.)</li>
+                        <li>Security software running scans</li>
+                        <li>Browser tabs with auto-playing videos</li>
+                    </ul>
+                </li>
+
+                <li><strong>Consider your internet plan</strong>
+                    <p>If multiple people are using the connection simultaneously, you might need more bandwidth. A 100 Mbps plan can struggle with 3+ people streaming/gaming at once.</p>
+                </li>
+            </ol>
+
+            <div class="tip-box">
+                <p style="margin: 0;"><strong>Gaming Tip:</strong> For competitive gaming, aim for ping under 50ms. Anything above 100ms will feel noticeably laggy. The type of connection matters more than raw speed - fiber and cable typically have lower latency than DSL or satellite.</p>
+            </div>
+        </div>
+
+        <!-- Problem 4 -->
+        <div class="problem-section">
+            <h2>📉 Problem: Speeds Slow Down During Evenings</h2>
+            <p>If your speeds are great during the day but terrible from 7-11 PM, you're experiencing network congestion.</p>
+
+            <h3>Why This Happens:</h3>
+            <p>Cable internet is shared bandwidth. When everyone in your neighborhood gets home and starts streaming Netflix, your speeds drop. This is especially common in apartment buildings and dense suburbs.</p>
+
+            <h3>What You Can Do:</h3>
+            <ul>
+                <li><strong>Upgrade to a higher speed tier:</strong> If 300 Mbps drops to 150 during peak hours, upgrading to 500 Mbps means you'd still get 250+ when congested</li>
+                <li><strong>Switch to fiber if available:</strong> Fiber connections are dedicated lines, not shared, so they don't slow down during peak hours</li>
+                <li><strong>Schedule heavy usage for off-peak hours:</strong> Download games/updates overnight, schedule cloud backups for early morning</li>
+                <li><strong>Optimize what you have:</strong> Use 5GHz WiFi, close unnecessary apps, prioritize important traffic with QoS</li>
+            </ul>
+
+            <p>Unfortunately, there's no magic fix for ISP network congestion besides switching providers or upgrading your plan.</p>
+        </div>
+
+        <!-- Problem 5 -->
+        <div class="problem-section">
+            <h2>💻 Problem: One Device is Slow, Others Are Fine</h2>
+            <p>If only one device has slow speeds, the problem is with that specific device, not your network.</p>
+
+            <h3>Device-Specific Troubleshooting:</h3>
+
+            <p><strong>For Computers (Windows/Mac):</strong></p>
+            <ol>
+                <li>Restart the device</li>
+                <li>Update WiFi drivers (Device Manager > Network Adapters)</li>
+                <li>Scan for malware/viruses</li>
+                <li>Check Task Manager/Activity Monitor for bandwidth-hogging processes</li>
+                <li>Disable VPN temporarily and retest</li>
+                <li>Try forgetting and reconnecting to the WiFi network</li>
+                <li>Test with different browsers</li>
+            </ol>
+
+            <p><strong>For Phones/Tablets:</strong></p>
+            <ol>
+                <li>Restart the device</li>
+                <li>Forget WiFi network and reconnect</li>
+                <li>Update iOS/Android to latest version</li>
+                <li>Check if Low Power Mode is enabled (can throttle speeds)</li>
+                <li>Clear browser cache and app data</li>
+                <li>Disable any VPN or data-saving features</li>
+            </ol>
+
+            <p><strong>Check if device supports your WiFi speeds:</strong></p>
+            <ul>
+                <li>Older devices may only support WiFi 4 (802.11n) which maxes out around 150-200 Mbps</li>
+                <li>Single-antenna devices will be slower than multi-antenna devices</li>
+                <li>Some phones/laptops don't support 5GHz WiFi</li>
+            </ul>
+        </div>
+
+        <!-- Problem 6 -->
+        <div class="problem-section">
+            <h2>🌐 Problem: Some Websites Load Slow, Others Are Fast</h2>
+            <p>If only certain websites or services are slow while others work fine, the issue might be DNS, routing, or the website itself.</p>
+
+            <h3>Solutions:</h3>
+
+            <p><strong>Try a different DNS server:</strong></p>
+            <ol>
+                <li>Go to your network settings</li>
+                <li>Change DNS to one of these:
+                    <ul>
+                        <li>Cloudflare: 1.1.1.1 and 1.0.0.1</li>
+                        <li>Google: 8.8.8.8 and 8.8.4.4</li>
+                        <li>Quad9: 9.9.9.9</li>
+                    </ul>
+                </li>
+                <li>Restart browser and retest</li>
+            </ol>
+
+            <p><strong>Clear browser cache and cookies:</strong></p>
+            <ul>
+                <li>Chrome/Edge: Ctrl+Shift+Delete</li>
+                <li>Clear cached images and files</li>
+                <li>Restart browser</li>
+            </ul>
+
+            <p><strong>Disable browser extensions:</strong></p>
+            <ul>
+                <li>Ad blockers and security extensions can sometimes slow down page loading</li>
+                <li>Try loading in Incognito/Private mode (disables extensions)</li>
+                <li>If it's faster, disable extensions one by one to find the culprit</li>
+            </ul>
+
+            <p><strong>Check if it's the website:</strong></p>
+            <ul>
+                <li>Visit <a href="https://downdetector.com" style="color: #00d4ff;" target="_blank">downdetector.com</a> to see if others are having issues</li>
+                <li>Try accessing the site from your phone using cellular data</li>
+                <li>The problem might be on their end, not yours</li>
+            </ul>
+        </div>
+
+        <!-- When to Contact ISP -->
+        <div class="problem-section">
+            <h2>📞 When to Contact Your ISP</h2>
+            <p>You should contact your internet service provider if:</p>
+
+            <ul>
+                <li>You're getting less than 70% of advertised speeds consistently (tested via ethernet)</li>
+                <li>Your connection drops multiple times per day</li>
+                <li>Speeds are slow 24/7, not just during peak hours</li>
+                <li>Your modem/router lights are showing errors (red or amber lights)</li>
+                <li>You've tried all troubleshooting steps and nothing helps</li>
+                <li>Your service has suddenly gotten much worse recently</li>
+            </ul>
+
+            <div class="tip-box">
+                <p style="margin-bottom: 10px;"><strong>Before calling your ISP:</strong></p>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Document speeds with screenshots over several days</li>
+                    <li>Test via ethernet (they'll ask you to do this anyway)</li>
+                    <li>Write down your modem and router model numbers</li>
+                    <li>Have your account number ready</li>
+                    <li>Be prepared to restart equipment while on the phone</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quick Reference -->
+        <div style="margin-top: 60px; padding: 30px; background: rgba(0, 212, 255, 0.1); border-radius: 8px;">
+            <h2 style="color: #00d4ff; margin-bottom: 20px;">Quick Troubleshooting Checklist</h2>
+            <ol style="font-size: 18px; line-height: 2;">
+                <li>Restart modem and router (wait 30 seconds between)</li>
+                <li>Test wired vs wireless (ethernet vs WiFi)</li>
+                <li>Check if it's one device or all devices</li>
+                <li>Test at different times of day</li>
+                <li>Close bandwidth-hungry apps</li>
+                <li>Move router to better location</li>
+                <li>Update router firmware and device drivers</li>
+                <li>Check for ISP outages</li>
+                <li>Scan for malware/viruses</li>
+                <li>If nothing works, contact ISP with documentation</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 60px; padding: 30px; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+            <p style="font-size: 18px; margin-bottom: 10px;"><strong>Still having issues?</strong></p>
+            <p style="margin-bottom: 0;">Run a <a href="index.html" style="color: #00d4ff;">speed test</a> and <a href="contact.html" style="color: #00d4ff;">contact us</a> with your results. Include details about when the problem occurs and what you've already tried.</p>
+        </div>
+
+        <p style="margin-top: 60px;">
+            <a href="index.html" class="back-link">← Back to Speed Test</a>
+        </p>
+    </div>
+
+    <div class="footer-bottom" style="margin-top: 60px;">
+        <p>&copy; 2025 speedtst.online. All Rights Reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="contact.html">Contact</a>
+        </p>
+    </div>
+</body>
+</html>
