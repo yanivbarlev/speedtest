@@ -16,6 +16,7 @@ class SpeedTest {
             country: '',
             server: 'Auto-selected'
         };
+        this.progressPercent = 0; // Track overall progress (0-100)
         this.initializeUI();
         this.detectUserInfo();
     }
@@ -125,36 +126,22 @@ class SpeedTest {
                 this.displayResults();
                 break;
         }
-
-        // Update progress circle
-        this.updateProgressCircle(phase);
     }
 
-    updateProgressCircle(phase) {
+    updateProgressCircle(percent) {
         const circle = document.getElementById('progressCircle');
         const circumference = 565.48; // 2 * PI * 90
-        let progress = 0;
 
-        switch (phase) {
-            case 'IDLE':
-                progress = 0;
-                break;
-            case 'TESTING_PING':
-                progress = 0.2;
-                break;
-            case 'TESTING_DOWNLOAD':
-                progress = 0.5;
-                break;
-            case 'TESTING_UPLOAD':
-                progress = 0.8;
-                break;
-            case 'COMPLETE':
-                progress = 1;
-                break;
-        }
+        // Convert percent (0-100) to progress (0-1)
+        const progress = percent / 100;
 
         const offset = circumference - (progress * circumference);
         circle.style.strokeDashoffset = offset;
+    }
+
+    setProgress(percent) {
+        this.progressPercent = Math.min(100, Math.max(0, percent));
+        this.updateProgressCircle(this.progressPercent);
     }
 
     displayResults() {
@@ -169,24 +156,26 @@ class SpeedTest {
     async startTest() {
         console.log('Starting speed test...');
         this.state = 'TESTING_PING';
+        this.setProgress(0);
 
         // Hide results from previous test
         document.getElementById('resultsDisplay').style.display = 'none';
 
         try {
-            // Phase 1: Ping test
+            // Phase 1: Ping test (0-20% progress)
             await this.testPing();
 
-            // Phase 2: Download test
+            // Phase 2: Download test (20-60% progress)
             this.state = 'TESTING_DOWNLOAD';
             await this.testDownload();
 
-            // Phase 3: Upload test
+            // Phase 3: Upload test (60-100% progress)
             this.state = 'TESTING_UPLOAD';
             await this.testUpload();
 
             // Complete
             this.state = 'COMPLETE';
+            this.setProgress(100);
             this.updateUI('COMPLETE');
 
             // Save to history
@@ -197,6 +186,7 @@ class SpeedTest {
             alert('Test failed: ' + error.message);
             this.state = 'IDLE';
             this.updateUI('IDLE');
+            this.setProgress(0);
         }
     }
 
@@ -204,8 +194,9 @@ class SpeedTest {
         console.log('Testing ping...');
         const testUrl = 'https://www.cloudflare.com/cdn-cgi/trace';
         const measurements = [];
+        const totalPings = 5;
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < totalPings; i++) {
             const startTime = performance.now();
             try {
                 await fetch(testUrl, { cache: 'no-cache' });
@@ -215,6 +206,10 @@ class SpeedTest {
 
                 // Update UI with current ping
                 this.updateUI('TESTING_PING', latency);
+
+                // Update progress: 0-20% for ping test
+                const pingProgress = ((i + 1) / totalPings) * 20;
+                this.setProgress(pingProgress);
 
                 // Small delay between pings
                 await this.sleep(100);
@@ -236,17 +231,22 @@ class SpeedTest {
 
         const testDuration = 5000; // 5 seconds test
         const overallStartTime = performance.now();
-        let totalBytes = 0;
         let updateCount = 0;
 
         // Simulate progress with actual timing
         const progressInterval = setInterval(() => {
             const elapsed = (performance.now() - overallStartTime) / 1000;
+
             // Simulate increasing speed
             const simulatedSpeed = Math.min(100, elapsed * 20); // Ramps up to 100 Mbps
             this.updateUI('TESTING_DOWNLOAD', simulatedSpeed);
+
+            // Update progress: 20-60% for download test (40% total)
+            const downloadProgress = 20 + (elapsed / (testDuration / 1000)) * 40;
+            this.setProgress(downloadProgress);
+
             updateCount++;
-            console.log(`Download update ${updateCount}: ${simulatedSpeed.toFixed(1)} Mbps (${elapsed.toFixed(1)}s elapsed)`);
+            console.log(`Download update ${updateCount}: ${simulatedSpeed.toFixed(1)} Mbps (${elapsed.toFixed(1)}s, ${downloadProgress.toFixed(1)}% complete)`);
         }, 200); // Update every 200ms
 
         try {
@@ -254,6 +254,7 @@ class SpeedTest {
             await this.sleep(testDuration);
 
             clearInterval(progressInterval);
+            this.setProgress(60); // Ensure we're at 60% before moving to upload
 
             // Set a realistic download speed (you can make this dynamic later)
             this.results.download = 75 + Math.random() * 50; // 75-125 Mbps
@@ -281,11 +282,17 @@ class SpeedTest {
         // Simulate progress with actual timing
         const progressInterval = setInterval(() => {
             const elapsed = (performance.now() - overallStartTime) / 1000;
+
             // Simulate increasing speed (upload is usually slower than download)
             const simulatedSpeed = Math.min(50, elapsed * 10); // Ramps up to 50 Mbps
             this.updateUI('TESTING_UPLOAD', simulatedSpeed);
+
+            // Update progress: 60-100% for upload test (40% total)
+            const uploadProgress = 60 + (elapsed / (testDuration / 1000)) * 40;
+            this.setProgress(uploadProgress);
+
             updateCount++;
-            console.log(`Upload update ${updateCount}: ${simulatedSpeed.toFixed(1)} Mbps (${elapsed.toFixed(1)}s elapsed)`);
+            console.log(`Upload update ${updateCount}: ${simulatedSpeed.toFixed(1)} Mbps (${elapsed.toFixed(1)}s, ${uploadProgress.toFixed(1)}% complete)`);
         }, 200); // Update every 200ms
 
         try {
@@ -293,6 +300,7 @@ class SpeedTest {
             await this.sleep(testDuration);
 
             clearInterval(progressInterval);
+            this.setProgress(100); // Ensure we're at 100%
 
             // Set a realistic upload speed (typically 30-50% of download)
             this.results.upload = 25 + Math.random() * 35; // 25-60 Mbps
