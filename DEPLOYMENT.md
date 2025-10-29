@@ -140,6 +140,67 @@ If you need to add API keys later:
 - Consider upgrading or switching to ipify.org for IP only
 - Add error handling and fallbacks
 
+### Issue: ads.txt or robots.txt not deploying (404 error)
+
+**Symptoms**:
+- File exists in Git repository
+- GitHub shows the file is committed
+- Other files (like sitemap.xml, robots.txt) work fine
+- Vercel returns 404 for ads.txt even after multiple deployments
+- Long wait times (10+ minutes) don't resolve the issue
+
+**Root Cause**:
+GitHub → Vercel automatic deployment may not always immediately recognize new text files in the `/public` directory, especially for critical files like ads.txt.
+
+**Solution - Use Vercel CLI Direct Deployment**:
+
+1. **Install Vercel CLI** (if not already installed):
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Login to Vercel**:
+   ```bash
+   vercel login
+   ```
+   Follow the browser authentication flow.
+
+3. **Deploy directly from local directory**:
+   ```bash
+   cd "C:\Users\User\Dropbox\Yaniv - Personal\cursor projects\speedtest"
+   vercel --prod
+   ```
+
+4. **Verify deployment**:
+   ```bash
+   curl https://speedtst.online/ads.txt
+   ```
+
+**Why this works**:
+- `vercel --prod` deploys directly from your local filesystem to Vercel production
+- Bypasses the GitHub integration entirely
+- Deployment completes in ~10-30 seconds instead of waiting for GitHub webhook
+- Immediately pushes all files including newly added text files
+
+**Prevention for future deployments**:
+- For critical files (ads.txt, robots.txt, etc.), use `vercel --prod` CLI deployment
+- Alternatively, create these files BEFORE initial deployment
+- GitHub auto-deployment works well for code changes, but CLI is more reliable for infrastructure files
+
+**Verification checklist**:
+```bash
+# Check ads.txt is accessible
+curl https://speedtst.online/ads.txt
+
+# Check with headers
+curl -I https://speedtst.online/ads.txt
+
+# Expected response:
+# HTTP/1.1 200 OK
+# Content-Type: text/plain; charset=utf-8
+# Content-Length: 59
+```
+
 ## Continuous Deployment
 
 Once connected to GitHub, Vercel will automatically:
@@ -179,6 +240,86 @@ Monitor usage in Vercel dashboard under "Usage"
 2. **Test History**: Stored in localStorage (client-side only)
 3. **Configuration**: In `vercel.json` (version controlled)
 
+## Quick Reference: Vercel CLI Commands
+
+### Essential Commands
+
+```bash
+# Login to Vercel
+vercel login
+
+# Deploy to production (bypasses GitHub)
+vercel --prod
+
+# Deploy to preview/staging
+vercel
+
+# Check deployment logs
+vercel logs <deployment-url>
+
+# List all deployments
+vercel ls
+
+# Redeploy a specific deployment
+vercel redeploy <deployment-url>
+
+# Remove a deployment
+vercel rm <deployment-url>
+
+# Link local project to Vercel project
+vercel link
+
+# Check current Vercel user
+vercel whoami
+
+# Logout
+vercel logout
+```
+
+### When to use Vercel CLI vs GitHub Auto-Deploy
+
+**Use Vercel CLI (`vercel --prod`)** when:
+- Adding critical infrastructure files (ads.txt, robots.txt, security.txt)
+- Need immediate deployment (< 30 seconds)
+- Troubleshooting GitHub webhook issues
+- Testing configuration changes quickly
+- Deploying hotfixes
+
+**Use GitHub Auto-Deploy** when:
+- Making regular code changes
+- Want deployment history tracked in GitHub
+- Need preview deployments for PRs
+- Working in a team with code review process
+- Want CI/CD integration
+
+### Deployment Workflow Best Practice
+
+For regular updates:
+```bash
+# 1. Make changes locally
+git add .
+git commit -m "Update content"
+git push
+
+# 2. Wait for GitHub auto-deploy (usually 1-2 minutes)
+# Check status at: https://vercel.com/dashboard
+```
+
+For urgent infrastructure files:
+```bash
+# 1. Create/update the file
+# 2. Commit to Git (for version control)
+git add public/ads.txt
+git commit -m "Add ads.txt for AdSense"
+git push
+
+# 3. Deploy immediately via CLI
+vercel --prod
+
+# 4. Verify
+curl https://speedtst.online/ads.txt
+```
+
 ## Next Steps After Deployment
 
 1. [ ] Test from multiple locations
@@ -201,3 +342,4 @@ Monitor usage in Vercel dashboard under "Usage"
 - [ ] All tests working on production
 - [ ] Mobile tested
 - [ ] Performance verified
+- [ ] ads.txt accessible (if using AdSense)
