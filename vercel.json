@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "routes": [
+    {
+      "src": "/ads.txt",
+      "dest": "/public/ads.txt"
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
